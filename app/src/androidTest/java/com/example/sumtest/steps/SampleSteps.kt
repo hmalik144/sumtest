@@ -18,11 +18,21 @@ class SampleSteps {
     }
 
     @Given("I start the application")
-    fun I_start_the_application() {
+    fun i_start_the_application() {
         mActivityScenarioRule.moveToState(Lifecycle.State.STARTED)
 
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         Assert.assertEquals("com.example.sumtest", appContext.packageName)
+    }
+
+    @Given("I start the application and throw an exception")
+    fun i_start_the_application_and_throw_an_exception() {
+        mActivityScenarioRule.moveToState(Lifecycle.State.STARTED)
+
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        Assert.assertEquals("com.example.sumtest", appContext.packageName)
+
+        throw Exception("This is an exception")
     }
 
 }
