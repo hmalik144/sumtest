@@ -3,7 +3,6 @@ package com.example.sumtest
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.ViewModel
-import com.example.sumtest.utils.BasicIdlingResource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -60,7 +59,7 @@ class SumViewModel : ViewModel() {
             return Error.InvalidInput
         }
 
-        if (firstAsInt > 1000 || secondAsInt > 1000) {
+        if (firstAsInt > 1000 || secondAsInt > 1000 || firstAsInt < -1000 || secondAsInt < -1000) {
             return Error.Overflow
         }
 
