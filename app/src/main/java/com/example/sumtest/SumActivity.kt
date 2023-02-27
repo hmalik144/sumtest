@@ -8,14 +8,19 @@ import android.view.View.VISIBLE
 import android.view.inputmethod.InputMethodManager
 import android.view.inputmethod.InputMethodManager.HIDE_NOT_ALWAYS
 import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.test.espresso.IdlingResource
 import com.example.sumtest.databinding.ActivityMainBinding
+import com.example.sumtest.utils.BasicIdlingResource
 import kotlinx.coroutines.launch
 
 class SumActivity : AppCompatActivity() {
+    // The Idling Resource which will be null in production.
+    private var mIdlingResource: BasicIdlingResource? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -53,6 +58,10 @@ class SumActivity : AppCompatActivity() {
                         binding.secondNumber.removeTextChangedListener(textChangedListener)
                         binding.secondNumber.text = null
                         binding.secondNumber.addTextChangedListener(textChangedListener)
+                        mIdlingResource?.setIdleState(true)
+                    }
+                    if (it.error != null) {
+                        mIdlingResource?.setIdleState(true)
                     }
                 }
             }
@@ -65,9 +74,21 @@ class SumActivity : AppCompatActivity() {
             )
             (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
                 .hideSoftInputFromWindow(currentFocus?.windowToken, HIDE_NOT_ALWAYS)
+            mIdlingResource?.setIdleState(false)
         }
 
         binding.firstNumber.addTextChangedListener(textChangedListener)
         binding.secondNumber.addTextChangedListener(textChangedListener)
+    }
+
+    /**
+     * Only called from test, creates and returns a new [BasicIdlingResource].
+     */
+    @VisibleForTesting
+    fun getIdlingResource(): IdlingResource? {
+        if (mIdlingResource == null) {
+            mIdlingResource = BasicIdlingResource()
+        }
+        return mIdlingResource
     }
 }
