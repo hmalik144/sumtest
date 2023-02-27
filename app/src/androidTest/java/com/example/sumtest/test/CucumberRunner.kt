@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions
 
 @CucumberOptions(
     features = ["features"],
-    tags = ["@sample_test"],
+    tags = ["@calculator_test"],
     glue = ["com.example.sumtest.steps"]
 )
 class CucumberRunner
