@@ -1,6 +1,5 @@
 package com.example.sumtest.steps
 
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.State.RESUMED
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.IdlingRegistry

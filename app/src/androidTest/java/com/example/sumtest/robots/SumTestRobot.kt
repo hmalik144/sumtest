@@ -1,6 +1,7 @@
 package com.example.sumtest.robots
 
-import androidx.test.espresso.matcher.ViewMatchers.Visibility.*
+import androidx.test.espresso.matcher.ViewMatchers.Visibility.GONE
+import androidx.test.espresso.matcher.ViewMatchers.Visibility.VISIBLE
 import com.example.sumtest.R
 
 fun sumTest(func: SumTestRobot.() -> Unit) = SumTestRobot().apply { func() }
