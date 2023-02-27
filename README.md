@@ -100,3 +100,6 @@ class SumTestSteps {
     ....
 }
 ```
+## Continuous Integration
+
+As part of being an automation tester the project has been connected to CircleCI for CI/CD operations. 
