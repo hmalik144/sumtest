@@ -103,3 +103,10 @@ class SumTestSteps {
 ## Continuous Integration
 
 As part of being an automation tester the project has been connected to CircleCI for CI/CD operations. 
+We can see our test results in the pipeline to assess performance of testing.
+<img src="/img/ci_pipeline.PNG" alt="CircleCI Pipeline" title="CircleCI Pipeline">
+
+## Source Control
+
+The project has many revisions for each piece of work completed to create a workable git tree.
+<img src="/img/git_tree.PNG" alt="Github commit tree" title="Github commit tree">
